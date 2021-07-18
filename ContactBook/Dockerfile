@@ -1,10 +1,9 @@
 # NuGet restore
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /src
-COPY *.sln .
-COPY ContactBook/*.csproj ContactBook/
+COPY . ./
 RUN dotnet restore
-COPY . .
+COPY . ./
 
 # testing
 # FROM build AS testing
