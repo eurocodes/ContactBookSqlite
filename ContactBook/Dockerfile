@@ -12,9 +12,13 @@ COPY . ./
 # WORKDIR /src/Colors.UnitTests
 # RUN dotnet test
 
+# Build
+WORKDIR /src
+RUN dotnet build
+
 # publish
 FROM build AS publish
-WORKDIR /src/ContactBook
+WORKDIR /src
 RUN dotnet publish -c Release -o /src/publish
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS runtime
