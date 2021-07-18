@@ -23,7 +23,7 @@ RUN dotnet publish -c Release -o /src/publish
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS runtime
 WORKDIR /app
-COPY --from=publish /src/publish .
+COPY --from=publish /app/publish .
 # ENTRYPOINT ["dotnet", "ContactBook.dll"]
 # heroku uses the following
 CMD ASPNETCORE_URLS=http://*:$PORT dotnet ContactBook.dll
