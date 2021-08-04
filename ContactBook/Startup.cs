@@ -90,6 +90,7 @@ namespace ContactBook
             {
                 options.AddPolicy("AdminRolePolicy", policy => policy.RequireRole("Admin"));
                 options.AddPolicy("RegularRolePolicy", policy => policy.RequireRole("Regular"));
+                //options.AddPolicy("AdminOrRegularRolePolicy", policy => policy.RequireRole("Admin, Regular"));
             });
 
         }

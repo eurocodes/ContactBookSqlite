@@ -107,8 +107,8 @@ namespace ContactBook.Controllers
         }
 
         [Authorize(Policy = "AdminRolePolicy")]
-        [HttpGet("search-term/{searchterm}")]
-        public async Task<IActionResult> GetSingleContactsBySearch(string searchterm)
+        [HttpGet("search/")]
+        public async Task<IActionResult> GetSingleContactsBySearch([FromQuery] string searchterm)
         {
             var contacts = await _contactRepository.Search(searchterm);
             if (contacts == null)
@@ -117,11 +117,11 @@ namespace ContactBook.Controllers
             return Ok(contacts);
         }
 
-        [Authorize(Policy = "AdminRolePolicy, RegularRolePolicy")]
-        [HttpPut("update/{userId}")]
-        public IActionResult UpdateContacts(string userId, UpdateContactDto addContact)
+        [Authorize(Policy = "AdminRolePolicy")]
+        [HttpPut("update/{contactId}")]
+        public IActionResult UpdateContacts(string contactId, UpdateContactDto addContact)
         {
-            var contacts = _contactRepository.GetContactById(userId);
+            var contacts = _contactRepository.GetContactById(contactId);
             if (contacts == null)
                 return NotFound();
 
